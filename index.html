@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utkarsh & Princy — Wellness Diet Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --saffron: #C4742A;
+    --saffron-light: #E8B86D;
+    --green: #2D5A27;
+    --green-light: #4A7C3F;
+    --cream: #FAF6EE;
+    --card: #FFFFFF;
+    --text: #1A1A12;
+    --muted: #7A7068;
+    --border: #E8DFD0;
+    --utkarsh: #2D5A90;
+    --utkarsh-bg: #EBF1FA;
+    --princy: #B84B7A;
+    --princy-bg: #FAEAF2;
+    --both: #2D5A27;
+    --both-bg: #EAF3E8;
+    --warning: #8B3A3A;
+    --tag-bg: #F2EBE0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1C3A1A 0%, #2D5A27 40%, #4A3820 100%);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(196,116,42,0.3);
+    border: 1px solid rgba(232,184,109,0.4);
+    color: var(--saffron-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #FFF8F0;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--saffron-light);
+  }
+  .hero-sub {
+    color: rgba(255,248,240,0.65);
+    font-size: 0.88rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Fasting Timeline */
+  .fasting-bar {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1rem;
+    padding: 1.2rem 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .fasting-label {
+    color: rgba(255,248,240,0.6);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .timeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .tl-block {
+    padding: 0.5rem 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+  }
+  .tl-fast { background: rgba(139,58,58,0.6); color: #FFCBC9; flex: 12; }
+  .tl-eat { background: rgba(45,90,39,0.8); color: #C8F0C3; flex: 12; }
+  .tl-times {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,248,240,0.5);
+    font-size: 0.68rem;
+    margin-top: 0.4rem;
+  }
+
+  /* ── PILLS LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: #FFF;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .pill-u { background: var(--utkarsh-bg); color: var(--utkarsh); }
+  .pill-p { background: var(--princy-bg); color: var(--princy); }
+  .pill-b { background: var(--both-bg); color: var(--both); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-u { background: var(--utkarsh); }
+  .dot-p { background: var(--princy); }
+  .dot-b { background: var(--both); }
+
+  /* ── NAV TABS ── */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #FFF;
+    border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-wrap::-webkit-scrollbar { display: none; }
+  .nav {
+    display: flex;
+    min-width: max-content;
+    padding: 0 1rem;
+  }
+  .nav-btn {
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-btn:hover { color: var(--saffron); }
+  .nav-btn.active { color: var(--saffron); border-bottom-color: var(--saffron); }
+
+  /* ── CONTENT ── */
+  .content { padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeUp 0.35s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .section-title em { font-style: italic; color: var(--saffron); }
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .card-icon {
+    width: 38px; height: 38px;
+    border-radius: 0.6rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .card-subtitle {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+
+  /* ── MEAL ITEMS ── */
+  .meal-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+  .meal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.6rem;
+    border-left: 3px solid transparent;
+    background: var(--cream);
+    transition: transform 0.15s;
+  }
+  .meal-item:hover { transform: translateX(3px); }
+  .meal-item.u-item { border-left-color: var(--utkarsh); background: var(--utkarsh-bg); }
+  .meal-item.p-item { border-left-color: var(--princy); background: var(--princy-bg); }
+  .meal-item.b-item { border-left-color: var(--both); background: var(--both-bg); }
+  .meal-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 22px;
+    padding-top: 1px;
+  }
+  .meal-text { flex: 1; }
+  .meal-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .meal-detail {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2rem;
+    background: var(--tag-bg);
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .tag-pro { background: #E8F4E8; color: #2A6A2A; }
+  .tag-fib { background: #FFF0E0; color: #8B4A00; }
+  .tag-fat { background: #FFF8E0; color: #7A5A00; }
+  .tag-ca { background: #E8F0FF; color: #2A3A8A; }
+  .tag-mg { background: #F0E8FF; color: #4A2A8A; }
+
+  /* ── WHO LABELS ── */
+  .who-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2rem;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+  .who-u { background: var(--utkarsh-bg); color: var(--utkarsh); }
+  .who-p { background: var(--princy-bg); color: var(--princy); }
+  .who-b { background: var(--both-bg); color: var(--both); }
+
+  /* ── GRID TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── NUTRIENT BOXES ── */
+  .nutrient-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .nutrient-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1.2rem;
+  }
+  .nutrient-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .nutrient-card ul { list-style: none; }
+  .nutrient-card ul li {
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+  }
+  .nutrient-card ul li:last-child { border-bottom: none; }
+  .nutrient-card ul li strong { color: var(--text); }
+
+  /* ── SCHEDULE TIMELINE ── */
+  .schedule { display: flex; flex-direction: column; gap: 0; }
+  .sch-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+  .sch-row::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 36px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .sch-row:last-child::before { display: none; }
+  .sch-time-wrap { text-align: center; flex-shrink: 0; }
+  .sch-dot {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    border: 2px solid var(--border);
+    background: #FFF;
+    margin: 0 auto 0.3rem;
+  }
+  .sch-time {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .sch-body {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+    padding: 0.8rem 1rem;
+    margin-top: 4px;
+  }
+  .sch-heading {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .sch-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .sch-dot.fasting { border-color: #8B3A3A; background: #FFF0F0; }
+  .sch-dot.pre { border-color: var(--saffron); background: #FFF8EE; }
+  .sch-dot.gym { border-color: var(--green); background: #EAF3E8; }
+  .sch-dot.eat { border-color: var(--saffron); background: #FFF8EE; }
+  .sch-dot.sleep { border-color: #6A5A8A; background: #F0EAF8; }
+
+  /* ── WEEKLY TABLE ── */
+  .week-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; overflow: hidden; border-radius: 0.8rem; border: 1px solid var(--border); }
+  .week-table th {
+    background: var(--green);
+    color: #FFF;
+    padding: 0.7rem 0.6rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .week-table td {
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.45;
+    color: var(--text);
+  }
+  .week-table tr:last-child td { border-bottom: none; }
+  .week-table tr:nth-child(even) td { background: #FAFAF7; }
+  .day-cell { font-weight: 700; color: var(--saffron); white-space: nowrap; }
+  .u-text { color: var(--utkarsh); font-size: 0.73rem; }
+  .p-text { color: var(--princy); font-size: 0.73rem; }
+  .both-text { color: var(--both); font-size: 0.73rem; }
+  table-wrap { overflow-x: auto; }
+
+  /* ── DRINK CARDS ── */
+  .drink-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+  .drink-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1rem 1.1rem;
+    border-top: 3px solid var(--saffron);
+  }
+  .drink-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .drink-benefit {
+    font-size: 0.77rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .drink-recipe {
+    font-size: 0.75rem;
+    color: var(--saffron);
+    font-weight: 600;
+    margin-top: 0.4rem;
+  }
+
+  /* ── TIPS SECTION ── */
+  .tip-box {
+    background: linear-gradient(135deg, var(--green) 0%, #1C3A1A 100%);
+    color: #FFF;
+    border-radius: 1rem;
+    padding: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .tip-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--saffron-light);
+  }
+  .tip-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .tip-box ul li {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.85);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .tip-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--saffron-light);
+  }
+
+  .macro-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .macro-bar h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .macro-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+  .macro-name { font-size: 0.8rem; font-weight: 600; min-width: 80px; color: var(--muted); }
+  .macro-track { flex: 1; background: var(--cream); border-radius: 2rem; height: 8px; overflow: hidden; }
+  .macro-fill { height: 100%; border-radius: 2rem; }
+  .macro-val { font-size: 0.78rem; font-weight: 700; color: var(--text); min-width: 60px; text-align: right; }
+
+  .callout {
+    background: var(--utkarsh-bg);
+    border: 1px solid rgba(45,90,144,0.2);
+    border-left: 4px solid var(--utkarsh);
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.82rem;
+    color: var(--utkarsh);
+    margin-bottom: 1rem;
+    line-height: 1.55;
+  }
+  .callout.warn {
+    background: #FFF8E0;
+    border-color: #C4A000;
+    border-left-color: #C4A000;
+    color: #7A5A00;
+  }
+  .callout.danger {
+    background: #FFF0F0;
+    border-color: #C44040;
+    border-left-color: #C44040;
+    color: #7A2020;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+  footer strong { color: var(--saffron); }
+
+  /* ── PDF FAB ── */
+  .pdf-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+  }
+  .pdf-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, #C4742A, #8B4A10);
+    color: #FFF;
+    border: none;
+    border-radius: 3rem;
+    padding: 0.9rem 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(196,116,42,0.5);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .pdf-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,116,42,0.6); }
+  .pdf-btn:active { transform: translateY(0); }
+  .pdf-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* ── PDF OVERLAY ── */
+  .pdf-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,18,0.72);
+    backdrop-filter: blur(4px);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .pdf-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .pdf-modal {
+    background: var(--card);
+    border-radius: 1.2rem;
+    width: 100%;
+    max-width: 820px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .pdf-modal-header {
+    padding: 1.3rem 1.6rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #1C3A1A, #2D5A27);
+  }
+  .pdf-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFF8F0;
+  }
+  .pdf-modal-title em { font-style: italic; color: var(--saffron-light); }
+  .pdf-modal-subtitle { color: rgba(255,248,240,0.6); font-size: 0.78rem; margin-top: 0.2rem; }
+  .pdf-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #FFF;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pdf-close:hover { background: rgba(255,255,255,0.28); }
+
+  .pdf-modal-body { overflow-y: auto; flex: 1; padding: 1.4rem 1.6rem; }
+
+  /* Day cards in preview */
+  .week-preview { display: flex; flex-direction: column; gap: 1rem; }
+  .day-card { border: 1px solid var(--border); border-radius: 0.8rem; overflow: hidden; }
+  .day-header {
+    background: var(--green);
+    color: #FFF;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .day-name { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .day-drink { font-size: 0.72rem; color: rgba(255,255,255,0.7); font-style: italic; }
+  .day-meals { display: grid; grid-template-columns: repeat(5, 1fr); }
+  @media (max-width: 600px) { .day-meals { grid-template-columns: 1fr 1fr; } }
+  .day-meal-cell {
+    padding: 0.65rem 0.8rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.76rem;
+    vertical-align: top;
+  }
+  .day-meal-cell:last-child { border-right: none; }
+  .day-meal-type { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.3rem; }
+  .meal-u { color: var(--utkarsh); font-size: 0.74rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.15rem; }
+  .meal-p { color: var(--princy); font-size: 0.74rem; font-weight: 600; line-height: 1.4; }
+  .meal-b { color: var(--both); font-size: 0.74rem; font-weight: 600; line-height: 1.4; }
+
+  .pdf-modal-footer {
+    padding: 1rem 1.6rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 0.8rem;
+    background: var(--cream);
+    flex-wrap: wrap;
+  }
+  .pdf-hint { font-size: 0.73rem; color: var(--muted); }
+  .pdf-action-btns { display: flex; gap: 0.7rem; align-items: center; }
+  .btn-regenerate {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 2rem;
+    padding: 0.6rem 1.1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-regenerate:hover { border-color: var(--saffron); color: var(--saffron); }
+  .btn-download {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, #C4742A, #8B4A10);
+    color: #FFF;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.65rem 1.3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(196,116,42,0.35);
+    transition: all 0.2s;
+  }
+  .btn-download:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(196,116,42,0.5); }
+  .btn-download:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .spin { animation: spin 1s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⚕ Personalised Wellness Plan · 2026</div>
+  <h1>Utkarsh & <em>Princy</em></h1>
+  <p class="hero-sub">Vegetarian · Weight Loss · Muscle Recovery · Daily Gym · Indian Kitchen</p>
+  <div class="fasting-bar">
+    <div class="fasting-label">⏱ Intermittent Fasting Window (16:8 equivalent with 12h minimum)</div>
+    <div class="timeline">
+      <div class="tl-block tl-fast">🌙 FASTING<br><small>8 PM → 8 AM</small></div>
+      <div class="tl-block tl-eat">🌿 EATING WINDOW<br><small>8 AM → 8 PM</small></div>
+    </div>
+    <div class="tl-times">
+      <span>12 AM</span><span>6 AM</span><span>8 AM</span><span>2 PM</span><span>8 PM</span><span>12 AM</span>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="pill pill-u"><div class="dot dot-u"></div>Utkarsh (Eggs OK)</div>
+  <div class="pill pill-p"><div class="dot dot-p"></div>Princy (Pure Veg)</div>
+  <div class="pill pill-b"><div class="dot dot-b"></div>Both</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav">
+    <button class="nav-btn active" onclick="switchTab('schedule')">📅 Schedule</button>
+    <button class="nav-btn" onclick="switchTab('drinks')">🫖 Morning Drinks</button>
+    <button class="nav-btn" onclick="switchTab('breakfast')">🍳 Breakfast</button>
+    <button class="nav-btn" onclick="switchTab('midmeal')">🍎 Mid-Meals</button>
+    <button class="nav-btn" onclick="switchTab('lunch')">🍱 Lunch</button>
+    <button class="nav-btn" onclick="switchTab('evening')">🌿 Evening Snack</button>
+    <button class="nav-btn" onclick="switchTab('dinner')">🌙 Dinner</button>
+    <button class="nav-btn" onclick="switchTab('weekly')">📆 Weekly Plan</button>
+    <button class="nav-btn" onclick="switchTab('recovery')">💪 Recovery & Nutrients</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: SCHEDULE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-schedule">
+  <p class="section-title">Daily <em>Rhythm</em></p>
+  <p class="section-desc">Your day is architected around the gym session, a clean 12-hour eating window, and five nourishing meals. Pre-workout drinks are herbal/zero-calorie and don't break the fast.</p>
+
+  <div class="callout warn">
+    ⚡ <strong>Gym at 7 AM tip:</strong> Training fasted is fine. Have your pre-workout drink (fennel/cinnamon/jeera water) at 6:15 AM. Break the fast post-workout at 8 AM — this is the most anabolic window. Keep a banana or dates handy for immediate post-gym energy if you feel lightheaded.
+  </div>
+
+  <div class="schedule">
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot fasting">🌙</div>
+        <div class="sch-time">6:00 AM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">Wake up → Pre-Workout Detox Drink</div>
+        <div class="sch-note">Choose from 7 herbal drinks (see Morning Drinks tab). These are herbal waters — no calories, don't break the fast. Hydrates and primes digestion. Drink 200-250 ml.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot gym">🏋️</div>
+        <div class="sch-time">7:00 AM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">Gym Session (60–75 minutes)</div>
+        <div class="sch-note">Strength + cardio mix. Carry 500ml plain water. If energy dips, have 1–2 dates mid-workout. Avoid sugary sports drinks.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot eat">🍳</div>
+        <div class="sch-time">8:00 AM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">⭐ MEAL 1 — Post-Workout Breakfast <span style="color:var(--saffron);font-size:0.8em">(EATING WINDOW BEGINS)</span></div>
+        <div class="sch-note">Most important meal. High protein + complex carbs + good fat. Full details in Breakfast tab. Aim 400–550 kcal.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot eat">🍎</div>
+        <div class="sch-time">11:00 AM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">MEAL 2 — Mid-Morning Snack</div>
+        <div class="sch-note">Light, nutrient-dense. Nuts, seeds, fruit or yogurt. Keeps metabolism active. See Mid-Meals tab. 150–200 kcal.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot eat">🍱</div>
+        <div class="sch-time">1:30 PM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">MEAL 3 — Lunch (Largest Meal)</div>
+        <div class="sch-note">Dal + roti/rice + sabzi + curd/raita. Balanced macros. Full details in Lunch tab. Aim 500–650 kcal.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot eat">🌿</div>
+        <div class="sch-time">4:30 PM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">MEAL 4 — Evening Snack</div>
+        <div class="sch-note">Protein + fiber combo. Sprouts, roasted chana, fruit, makhana. See Evening tab. 120–180 kcal.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot eat">🌙</div>
+        <div class="sch-time">7:30 PM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">MEAL 5 — Dinner (Light)</div>
+        <div class="sch-note">Soups, khichdi, light sabzi. Low carb, easy to digest. Full details in Dinner tab. 300–400 kcal.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot sleep">🌛</div>
+        <div class="sch-time">8:00 PM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">🥛 Golden Milk (Haldi Doodh) <span style="color:var(--warning);font-size:0.8em">— EATING WINDOW CLOSES</span></div>
+        <div class="sch-note">200ml low-fat warm milk + ¼ tsp turmeric + pinch of black pepper + ¼ tsp cinnamon + ½ tsp honey. Anti-inflammatory. Aids sleep and muscle repair. This is the LAST item before the 12-hour fast.</div>
+      </div>
+    </div>
+    <div class="sch-row">
+      <div class="sch-time-wrap">
+        <div class="sch-dot fasting">💤</div>
+        <div class="sch-time">10:30 PM</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-heading">Sleep — Muscle Recovery Window</div>
+        <div class="sch-note">7–8 hours sleep is non-negotiable for weight loss and muscle recovery. HGH (growth hormone) is released during deep sleep. Keep phones away 30 min before bed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:1.5rem">
+    <div class="macro-bar">
+      <h4>🧮 Daily Calorie Targets</h4>
+      <div class="macro-row">
+        <div class="macro-name">Utkarsh</div>
+        <div class="macro-track"><div class="macro-fill" style="width:70%;background:var(--utkarsh)"></div></div>
+        <div class="macro-val">1,650–1,900</div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-name">Princy</div>
+        <div class="macro-track"><div class="macro-fill" style="width:55%;background:var(--princy)"></div></div>
+        <div class="macro-val">1,350–1,550</div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem">These targets support ~0.5kg/week weight loss. Adjust based on weekly scale readings.</p>
+    </div>
+    <div class="macro-bar">
+      <h4>📊 Macro Split (Target)</h4>
+      <div class="macro-row">
+        <div class="macro-name">Protein</div>
+        <div class="macro-track"><div class="macro-fill" style="width:30%;background:#2A6A2A"></div></div>
+        <div class="macro-val">25–30%</div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-name">Carbs</div>
+        <div class="macro-track"><div class="macro-fill" style="width:45%;background:var(--saffron)"></div></div>
+        <div class="macro-val">40–45%</div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-name">Good Fats</div>
+        <div class="macro-track"><div class="macro-fill" style="width:30%;background:#C4A000"></div></div>
+        <div class="macro-val">25–30%</div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem">Complex carbs only. Eliminate refined flour, white rice > 2x/week, sugar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: MORNING DRINKS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-drinks">
+  <p class="section-title"><em>Morning</em> Detox Drinks</p>
+  <p class="section-desc">Have one of these at 6:00–6:15 AM, before gym. All are herbal — they don't break your fast. Rotate through the week. Prep most overnight for convenience.</p>
+
+  <div class="callout">
+    💧 After each drink, have a glass of plain warm water (200ml). Total morning hydration target before gym: 500–600ml. This also reduces calf muscle cramps significantly.
+  </div>
+
+  <div class="drink-grid">
+    <div class="drink-card">
+      <div class="drink-name">🌿 Fennel Seed Water</div>
+      <div class="drink-benefit">Aids digestion, reduces bloating, anti-inflammatory. Rich in potassium and Vitamin C. Excellent for gut health and metabolism.</div>
+      <div class="drink-recipe">How: Soak 1 tsp saunf in 250ml water overnight. Strain and drink warm in the morning.</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🪵 Cinnamon Water</div>
+      <div class="drink-benefit">Regulates blood sugar, reduces insulin spikes, boosts metabolism by 10%. Anti-microbial. Excellent for steady weight loss.</div>
+      <div class="drink-recipe">How: Boil 1 small cinnamon stick (dal chini) in 300ml water for 5 min. Cool slightly, drink warm.</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🌱 Fenugreek Water</div>
+      <div class="drink-benefit">Methi seeds control blood sugar, reduce calf cramps (rich in Mg), excellent for hormonal balance and hair health for Princy.</div>
+      <div class="drink-recipe">How: Soak 1 tsp methi seeds overnight in 200ml water. Drink the water (eat seeds optional).</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🍋 Warm Lemon + Ginger</div>
+      <div class="drink-benefit">Vitamin C boost, alkalises the body, kickstarts liver detox, reduces inflammation. Helps with morning nausea or heaviness.</div>
+      <div class="drink-recipe">How: Juice of ½ lemon + ½ inch grated ginger in 250ml warm water. Add raw honey (optional, ½ tsp).</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🌾 Cumin (Jeera) Water</div>
+      <div class="drink-benefit">Reduces belly fat, improves iron absorption, aids digestion. Rich in iron — especially important for Princy (non-egg, risk of deficiency).</div>
+      <div class="drink-recipe">How: Boil 1 tsp jeera in 250ml water for 5 min. Strain, cool to warm, drink.</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🌿 Coriander (Dhaniya) Seed Water</div>
+      <div class="drink-benefit">Detoxes kidneys, reduces water retention, good for thyroid health, rich in antioxidants. Reduces puffiness.</div>
+      <div class="drink-recipe">How: Soak 2 tsp crushed dhaniya seeds overnight in 250ml water. Strain and drink in the morning.</div>
+    </div>
+    <div class="drink-card">
+      <div class="drink-name">🧂 Himalayan Salt Electrolyte Water</div>
+      <div class="drink-benefit">Replenishes sodium, magnesium, potassium before gym. Directly helps with calf cramps. Prevents dehydration during fasted workout.</div>
+      <div class="drink-recipe">How: A pinch of pink Himalayan salt + juice of ½ lemon in 300ml water. Drink before gym.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:#FFF8E0;">🌙</div>
+        <div><div class="card-title">Bedtime: Golden Milk (Haldi Doodh)</div><div class="card-subtitle">Have before 8 PM — the last item of your eating window</div></div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">Classic Haldi Doodh</div>
+          <div class="meal-detail">200ml warm low-fat milk + ¼ tsp haldi (turmeric) + a pinch of kali mirch (black pepper — activates curcumin absorption 20x) + ¼ tsp cinnamon + ½ tsp raw honey + ½ tsp ghee (optional). Whisk well.</div>
+          <div class="tags">
+            <span class="tag tag-pro">Anti-inflammatory</span>
+            <span class="tag tag-ca">Calcium</span>
+            <span class="tag">Sleep aid</span>
+            <span class="tag">Muscle repair</span>
+          </div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);padding:0.5rem 0">This single drink addresses calf muscle aches (turmeric + black pepper = powerful anti-inflammatory), aids sleep, provides calcium, and closes your fasting window on an anti-inflammatory note.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: BREAKFAST -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-breakfast">
+  <p class="section-title">Post-Workout <em>Breakfast</em></p>
+  <p class="section-desc">8:00–8:30 AM · First meal of the day. Highest protein meal to repair muscles worked during gym. Do not skip. Aim 400–550 kcal with 20–30g protein.</p>
+
+  <div class="callout">
+    🥚 <strong>Utkarsh:</strong> Eggs give you a complete protein source (6g/egg). Always pair eggs with fibre (vegetables, seeds, whole grain toast). <strong>Princy:</strong> Compensate with paneer (18g/100g), moong dal, or besan-based dishes.
+  </div>
+
+  <!-- Utkarsh -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--utkarsh-bg);">🥚</div>
+      <div><div class="card-title">Utkarsh's Breakfast Options</div><div class="card-subtitle">Eggs included · 7 alternatives — rotate through the week</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item u-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">2 Boiled Eggs + Masala Oats + Banana</div>
+          <div class="meal-detail">2 hard-boiled eggs · ½ cup rolled oats cooked with cumin, vegetables (carrot, peas, capsicum) · 1 banana · 5 soaked almonds · chia seeds on top</div>
+          <div class="tags"><span class="tag tag-pro">~28g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag tag-mg">Magnesium</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Egg Bhurji + Whole Wheat Toast + Papaya</div>
+          <div class="meal-detail">2-egg spiced scrambled eggs (tomato, onion, green chilli, coriander, minimal oil/ghee) · 2 slices whole wheat toast · 1 cup papaya cubes</div>
+          <div class="tags"><span class="tag tag-pro">~25g Protein</span><span class="tag">Vitamin C</span><span class="tag">Quick prep</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Vegetable Omelette + Vegetable Poha</div>
+          <div class="meal-detail">2-egg omelette with spinach, capsicum, onion (no butter — use ½ tsp ghee) · small bowl poha with peanuts, mustard seeds, curry leaves, turmeric</div>
+          <div class="tags"><span class="tag tag-pro">~26g Protein</span><span class="tag tag-fib">Fibre</span><span class="tag">Iron</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">Overnight Oats + 2 Boiled Eggs + Walnuts</div>
+          <div class="meal-detail">½ cup rolled oats soaked overnight in 150ml low-fat curd + chia seeds + honey + sliced banana or apple · 2 boiled eggs · 2 walnuts · a pinch of cinnamon on oats</div>
+          <div class="tags"><span class="tag tag-pro">~28g Protein</span><span class="tag tag-fat">Omega-3</span><span class="tag tag-fib">Prebiotic</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Moong Dal Chilla + Egg White Scramble</div>
+          <div class="meal-detail">2 moong dal chilla (green moong soaked, blended with ginger, green chilli, coriander) + filling of egg white scramble + green chutney (mint-coriander)</div>
+          <div class="tags"><span class="tag tag-pro">~30g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag">Low Cal</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">Egg Paratha + Hung Curd Dip + Fruit</div>
+          <div class="meal-detail">1 egg stuffed whole wheat paratha (roll egg bhurji in rolled dough, cook on tawa with ½ tsp ghee) · 3 tbsp hung curd with herbs · 1 guava or orange</div>
+          <div class="tags"><span class="tag tag-pro">~22g Protein</span><span class="tag">Gut Health</span><span class="tag">Slow Release</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+      <div class="meal-item u-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Besan Egg Chilla + Greek Yogurt + Seeds Bowl</div>
+          <div class="meal-detail">1 whole egg + 2 tbsp besan blended, pour as thick chilla · 100g Greek yogurt (or hung dahi) with 1 tsp mixed seeds (pumpkin + flax + sunflower) + honey + seasonal fruit</div>
+          <div class="tags"><span class="tag tag-pro">~27g Protein</span><span class="tag tag-ca">Calcium</span><span class="tag tag-mg">Magnesium</span></div>
+        </div>
+        <span class="who-label who-u">Utkarsh</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Princy -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--princy-bg);">🌸</div>
+      <div><div class="card-title">Princy's Breakfast Options</div><div class="card-subtitle">Pure Vegetarian · 7 alternatives — rotate through the week</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item p-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">Paneer Bhurji + 2 Whole Wheat Toast + Papaya</div>
+          <div class="meal-detail">80g paneer crumbled, cooked with onion, tomato, turmeric, cumin, capsicum (minimal oil) · 2 slices brown/whole wheat toast · 1 cup papaya</div>
+          <div class="tags"><span class="tag tag-pro">~22g Protein</span><span class="tag tag-ca">Calcium</span><span class="tag">Vitamin C</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Moong Dal Chilla with Paneer Filling</div>
+          <div class="meal-detail">2 green moong dal chillas (grind soaked moong with ginger, chilli) stuffed with 50g spiced paneer + green chutney · a side of cucumber slices</div>
+          <div class="tags"><span class="tag tag-pro">~24g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag">Iron</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Overnight Oats + Nuts + Fruit Bowl</div>
+          <div class="meal-detail">½ cup oats soaked overnight in low-fat curd · chia seeds (1 tbsp) · banana slices + pomegranate seeds · 5 almonds + 2 walnuts · honey drizzle · cinnamon sprinkle</div>
+          <div class="tags"><span class="tag tag-pro">~14g Protein</span><span class="tag tag-fat">Omega-3</span><span class="tag tag-fib">Prebiotic</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">Vegetable Poha + Peanuts + Coconut Chutney + Fruit</div>
+          <div class="meal-detail">1 cup beaten rice cooked with ¼ cup peanuts, peas, potato (small), mustard seeds, curry leaves, turmeric · coconut chutney · 1 seasonal fruit</div>
+          <div class="tags"><span class="tag tag-pro">~12g Protein</span><span class="tag tag-fib">Fibre</span><span class="tag">Quick Prep</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Besan Chilla + Hung Curd + Seasonal Fruit</div>
+          <div class="meal-detail">2 besan chillas made with chopped onion, tomato, green chilli, coriander, ajwain · 3 tbsp hung curd dip with chaat masala · 1 guava or orange</div>
+          <div class="tags"><span class="tag tag-pro">~18g Protein</span><span class="tag tag-fib">Fibre</span><span class="tag">Low Fat</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">2 Idli + Vegetable Sambar + Coconut Chutney</div>
+          <div class="meal-detail">2 idli (steam cooked) · 1 bowl toor dal sambar with vegetables (drumstick, carrot, onion, tomato) · coconut chutney · 1 fruit (banana or papaya)</div>
+          <div class="tags"><span class="tag tag-pro">~16g Protein</span><span class="tag tag-fib">Fermented</span><span class="tag">Gut Health</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+      <div class="meal-item p-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Dalia Upma + Seeds + Buttermilk</div>
+          <div class="meal-detail">Broken wheat (dalia) upma cooked with mixed vegetables, jeera, curry leaves, mustard · 1 tsp pumpkin seeds + 1 tsp flaxseeds on top · 1 glass chaas (buttermilk)</div>
+          <div class="tags"><span class="tag tag-pro">~14g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag tag-mg">Magnesium</span></div>
+        </div>
+        <span class="who-label who-p">Princy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: MID-MEALS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-midmeal">
+  <p class="section-title">Mid-Morning <em>Snacks</em></p>
+  <p class="section-desc">11:00–11:30 AM · Light, nutrient-dense. Prevents overheating at lunch. Stabilises blood sugar. 150–200 kcal max. All options work for both of you.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--both-bg);">🍎</div>
+      <div><div class="card-title">Mid-Morning Snack Options (Both)</div><div class="card-subtitle">7 alternatives — choose based on hunger level and the day</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item b-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">Soaked Nuts + Dates</div>
+          <div class="meal-detail">10 soaked almonds + 4 walnut halves + 2 dates (khajoor). Soak almonds overnight — removes enzyme inhibitors, increases absorption. Walnuts provide omega-3 for muscle recovery.</div>
+          <div class="tags"><span class="tag tag-fat">Good Fats</span><span class="tag tag-mg">Magnesium</span><span class="tag">Potassium</span><span class="tag">Omega-3</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Fruit Bowl with Seeds</div>
+          <div class="meal-detail">1 medium fruit (apple / pear / guava / banana / chikoo / pomegranate) + 1 tbsp mixed seeds (pumpkin + sunflower + flax). The seeds add protein and minerals.</div>
+          <div class="tags"><span class="tag">Vitamin C</span><span class="tag tag-mg">Magnesium</span><span class="tag tag-fib">Fibre</span><span class="tag tag-mg">Zinc</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Hung Curd / Thick Dahi + Chia Seeds + Honey</div>
+          <div class="meal-detail">100g hung curd (or thick dahi) + 1 tsp chia seeds + ½ tsp honey + a pinch of cinnamon. High in calcium, probiotics, and protein. Extremely filling.</div>
+          <div class="tags"><span class="tag tag-pro">~12g Protein</span><span class="tag tag-ca">Calcium</span><span class="tag">Probiotic</span><span class="tag">Omega-3</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">Roasted Makhana + Coconut Water</div>
+          <div class="meal-detail">1 cup lotus seeds (makhana) lightly roasted in ½ tsp ghee with rock salt and black pepper + 200ml fresh coconut water (nariyal paani). Makhana is low-cal, high-calcium.</div>
+          <div class="tags"><span class="tag tag-ca">Calcium</span><span class="tag">Potassium</span><span class="tag">Anti-Cramp</span><span class="tag">Low Cal</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Apple or Banana + Peanut Butter</div>
+          <div class="meal-detail">1 medium apple (sliced) or 1 banana + 2 tsp natural peanut butter (no sugar added). Perfect carb + protein + fat combo. Pre-made peanut butter or grind fresh peanuts.</div>
+          <div class="tags"><span class="tag tag-fat">Good Fats</span><span class="tag tag-pro">Protein</span><span class="tag">Potassium</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">Spiced Chaas + Roasted Chana</div>
+          <div class="meal-detail">1 glass buttermilk (chaas) blended with roasted jeera, fresh mint, black salt, green chilli + small handful (30g) roasted whole chana (chickpeas). High in iron and protein.</div>
+          <div class="tags"><span class="tag">Iron</span><span class="tag tag-pro">Protein</span><span class="tag">Probiotic</span><span class="tag">Gut Health</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Seasonal Fruit Chaat</div>
+          <div class="meal-detail">Mixed cut fruits (banana + papaya + orange + pomegranate seeds + apple) with chaat masala + black salt + lemon juice. Vitamin C-rich. Antioxidant boost mid-day.</div>
+          <div class="tags"><span class="tag">Vitamin C</span><span class="tag">Antioxidants</span><span class="tag tag-fib">Fibre</span><span class="tag">Natural Sugar</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: LUNCH -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-lunch">
+  <p class="section-title">Power <em>Lunch</em></p>
+  <p class="section-desc">1:30 PM · Your largest, most balanced meal. Dal is mandatory (protein). Always include a salad and a source of probiotics (curd/raita/chaas). 500–650 kcal.</p>
+
+  <div class="callout warn">
+    🌾 <strong>Grain swap rule:</strong> Replace white rice with brown rice or hand-pound rice. Replace maida roti with whole wheat, bajra, jowar, or ragi roti. 1–2 roti + 1 small rice bowl is fine — not both large portions.
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--both-bg);">🍱</div>
+      <div><div class="card-title">Lunch Options (Both)</div><div class="card-subtitle">7 alternatives — dal is always included for protein</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item b-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">Classic Dal + Roti + Sabzi + Salad + Curd</div>
+          <div class="meal-detail">2 whole wheat rotis · 1 bowl toor/moong dal (light tadka: jeera, mustard, hing, turmeric) · 1 bowl mixed vegetable sabzi (low oil) · kachumber salad (cucumber, tomato, onion, lemon) · 1 small bowl curd</div>
+          <div class="tags"><span class="tag tag-pro">~20g Protein</span><span class="tag tag-fib">Fibre</span><span class="tag">Balanced</span><span class="tag">Probiotic</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Brown Rice + Rajma / Chole + Raita + Salad</div>
+          <div class="meal-detail">¾ cup brown rice · 1 bowl rajma (kidney beans) or chole curry cooked in onion-tomato masala · cucumber-mint raita · kachumber salad · thin slice of onion</div>
+          <div class="tags"><span class="tag tag-pro">~22g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag tag-ca">Iron</span><span class="tag">Slow Release</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Moong Dal Khichdi + Curd + Salad + Papad</div>
+          <div class="meal-detail">1 bowl khichdi (yellow moong dal + rice 1:2 ratio, cooked soft with ghee, jeera, hing, turmeric, ginger) · 1 bowl curd · raw salad · 1 roasted papad</div>
+          <div class="tags"><span class="tag tag-pro">~18g Protein</span><span class="tag">Easy Digest</span><span class="tag">Gut Rest</span><span class="tag">Comfort</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">2 Roti + Palak Paneer + Salad + Chaas</div>
+          <div class="meal-detail">2 whole wheat rotis · palak paneer (80g paneer in spinach-onion-tomato gravy, low cream) · kachumber salad · 1 glass spiced buttermilk</div>
+          <div class="tags"><span class="tag tag-pro">~25g Protein</span><span class="tag tag-ca">Calcium</span><span class="tag tag-mg">Iron</span><span class="tag">Vitamins</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Bajra/Jowar Roti + Arhar Dal + Aloo Gobhi + Curd</div>
+          <div class="meal-detail">2 bajra (pearl millet) or jowar rotis with ghee · 1 bowl arhar dal · dry aloo gobhi sabzi (low oil) · small bowl curd · green chutney</div>
+          <div class="tags"><span class="tag tag-mg">Magnesium</span><span class="tag tag-fib">Fibre</span><span class="tag">Gluten-free</span><span class="tag tag-pro">Protein</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">Quinoa + Chana Dal + Lauki Sabzi + Salad</div>
+          <div class="meal-detail">¾ cup cooked quinoa (complete protein) · 1 bowl chana dal (Bengal gram) · lauki/turai ki sabzi (bottle gourd — alkaline, anti-inflammatory) · cucumber salad</div>
+          <div class="tags"><span class="tag tag-pro">~24g Protein</span><span class="tag tag-fib">High Fibre</span><span class="tag">Complete AA</span><span class="tag">Anti-Inflam</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Vegetable Pulao + Dal Tadka + Raita</div>
+          <div class="meal-detail">1 cup brown rice vegetable pulao (peas, carrot, beans, whole spices) · 1 bowl yellow dal tadka (moong or toor with ghee tempering) · 1 bowl vegetable raita</div>
+          <div class="tags"><span class="tag tag-pro">~19g Protein</span><span class="tag>Balanced</span><span class="tag">Iron</span><span class="tag">Flavourful</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <h3>🥗 Always Include: The Power Salad</h3>
+    <ul>
+      <li>Base: Cucumber + tomato + red onion (raw, anti-inflammatory)</li>
+      <li>Add: Shredded carrot + beetroot 2–3x/week (liver detox, iron)</li>
+      <li>Dressing: Fresh lemon juice + pink Himalayan salt + roasted jeera powder. No store-bought dressings.</li>
+      <li>Boost: Add 1 tsp pumpkin seeds or sesame seeds on the salad for extra minerals</li>
+      <li>Sprinkle: Fresh coriander and mint — both are natural chelators of heavy metals</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: EVENING SNACK -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-evening">
+  <p class="section-title">Evening <em>Snack</em></p>
+  <p class="section-desc">4:00–4:30 PM · Light protein + fibre combo to bridge to dinner. 120–180 kcal max. Don't skip — it prevents overeating at dinner.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--both-bg);">🌿</div>
+      <div><div class="card-title">Evening Snack Options (Both)</div><div class="card-subtitle">7 alternatives · Light and nutrient-dense</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item b-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">Moong Sprouts Chaat</div>
+          <div class="meal-detail">½ cup germinated moong sprouts + chopped tomato + onion + green chilli + coriander + lemon juice + chaat masala + rock salt. Raw sprouts = living food, highest nutrient density.</div>
+          <div class="tags"><span class="tag tag-pro">~8g Protein</span><span class="tag tag-fib">Enzymes</span><span class="tag">Living Food</span><span class="tag">Iron</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Roasted Chana + Gur (Jaggery)</div>
+          <div class="meal-detail">1 small handful (30g) roasted bengal gram (kala/safed chana) + 1 small piece jaggery (10g). Traditional Indian energy snack. Rich in iron and protein. Keep in a jar on your desk.</div>
+          <div class="tags"><span class="tag">Iron</span><span class="tag tag-pro">Protein</span><span class="tag">B-Vitamins</span><span class="tag">Energy</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Seasonal Fruit (Whole)</div>
+          <div class="meal-detail">1 banana (potassium for cramps!) or 1 guava (Vitamin C) or 1 orange or 1 apple or a slice of watermelon or 1 pear. Eat whole fruit — never juice. Fibre is in the pulp.</div>
+          <div class="tags"><span class="tag">Potassium</span><span class="tag">Vitamin C</span><span class="tag tag-fib">Fibre</span><span class="tag">Natural Sugar</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">Ghee-Roasted Makhana + Herbal Chai</div>
+          <div class="meal-detail">1 cup fox nuts roasted in ½ tsp ghee + rock salt + ajwain (carom seeds). Pair with 1 cup tulsi-ginger-lemon herbal tea (no milk, no sugar). Ultra-satisfying, very low calorie.</div>
+          <div class="tags"><span class="tag tag-ca">Calcium</span><span class="tag">Magnesium</span><span class="tag">Low Cal</span><span class="tag">Crunch</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Homemade Hummus + Vegetable Sticks</div>
+          <div class="meal-detail">2 tbsp hummus (blend boiled chickpeas + tahini or sesame paste + lemon + garlic + olive oil + jeera) + carrot sticks + cucumber sticks + celery. Fibre + good fat combo.</div>
+          <div class="tags"><span class="tag tag-pro">Protein</span><span class="tag tag-fat">Good Fats</span><span class="tag tag-fib">Fibre</span><span class="tag tag-ca">Calcium</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">Mixed Seeds + Dates Mix</div>
+          <div class="meal-detail">1 tbsp pumpkin seeds + 1 tsp sunflower seeds + 1 tsp flaxseeds (pre-mixed in a jar) + 2 Medjool dates. Seeds = magnesium, zinc, omega-3. Dates = potassium, natural sugar.</div>
+          <div class="tags"><span class="tag tag-mg">Magnesium</span><span class="tag">Zinc</span><span class="tag tag-fat">Omega-3</span><span class="tag">Potassium</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Steamed Corn / Roasted Sweet Potato</div>
+          <div class="meal-detail">1 small bowl steamed sweet corn with lemon + chaat masala + coriander, OR ½ small sweet potato (shakarkandi) roasted/boiled. Sweet potato = potassium, Vitamin A, fibre.</div>
+          <div class="tags"><span class="tag">Potassium</span><span class="tag">Vitamin A</span><span class="tag tag-fib">Fibre</span><span class="tag">Beta-Carotene</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: DINNER -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-dinner">
+  <p class="section-title">Light <em>Dinner</em></p>
+  <p class="section-desc">7:30 PM · Smaller than lunch. Easy to digest. Lower in carbs, higher in protein + vegetables. Finish by 8:00 PM to honour your fasting window. 300–400 kcal.</p>
+
+  <div class="callout danger">
+    🚫 <strong>Dinner rules:</strong> No white rice at dinner. No heavy fried foods. Minimal oil. Cook with 1 tsp ghee max. This is the meal most people get wrong — overeating at dinner kills weight loss.
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--both-bg);">🌙</div>
+      <div><div class="card-title">Dinner Options (Both)</div><div class="card-subtitle">7 alternatives · Light, anti-inflammatory, gut-friendly</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item b-item">
+        <div class="meal-num">1</div>
+        <div class="meal-text">
+          <div class="meal-name">Vegetable Soup + 1 Roti + Light Sabzi</div>
+          <div class="meal-detail">1 bowl tomato-carrot-onion soup (blended, no cream) with whole spices + 1 small whole wheat roti + light sabzi (lauki/turai/parval — alkaline vegetables). Finish with haldi doodh.</div>
+          <div class="tags"><span class="tag">Hydrating</span><span class="tag tag-fib">Fibre</span><span class="tag">Low Cal</span><span class="tag">Alkaline</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">2</div>
+        <div class="meal-text">
+          <div class="meal-name">Moong Dal Khichdi (Light) + Curd + Salad</div>
+          <div class="meal-detail">1 bowl yellow moong dal khichdi (dal-heavy, rice-light ratio 2:1) with ghee + jeera + ginger · small bowl curd · cucumber-tomato salad. Easy on the gut, complete protein.</div>
+          <div class="tags"><span class="tag tag-pro">~17g Protein</span><span class="tag">Probiotic</span><span class="tag">Easy Digest</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">3</div>
+        <div class="meal-text">
+          <div class="meal-name">Dal Soup + 1 Roti + Steamed Vegetables</div>
+          <div class="meal-detail">Thin masoor/moong dal soup (strained or chunky) with lemon · 1 whole wheat roti · steamed broccoli or beans or carrots with lemon, salt, jeera. High fibre, filling, low carb.</div>
+          <div class="tags"><span class="tag tag-pro">Protein</span><span class="tag>Iron</span><span class="tag tag-fib">Fibre</span><span class="tag">Vitamins</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">4</div>
+        <div class="meal-text">
+          <div class="meal-name">Palak/Spinach Soup + Grilled Paneer</div>
+          <div class="meal-detail">Blended spinach soup (with garlic, onion, vegetable stock, lemon) · 80g paneer cubes grilled with jeera and herbs · side salad. Iron from spinach + calcium and protein from paneer.</div>
+          <div class="tags"><span class="tag tag-pro">~22g Protein</span><span class="tag tag-ca">Calcium</span><span class="tag">Iron</span><span class="tag">High Value</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">5</div>
+        <div class="meal-text">
+          <div class="meal-name">Vegetable Oats Daliya (Savoury)</div>
+          <div class="meal-detail">½ cup rolled oats or broken wheat (dalia) cooked as savoury upma with tomato, onion, peas, capsicum, turmeric, jeera · 1 tsp pumpkin seeds on top · lemon. Quick to cook.</div>
+          <div class="tags"><span class="tag tag-fib">Beta-glucan</span><span class="tag tag-mg">Magnesium</span><span class="tag">Low GI</span><span class="tag">Filling</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">6</div>
+        <div class="meal-text">
+          <div class="meal-name">Methi/Palak Paratha + Curd + Salad</div>
+          <div class="meal-detail">1 small whole wheat paratha stuffed with fresh methi (fenugreek) or palak (spinach) + garlic, cooked with ½ tsp ghee on tawa · 3 tbsp curd · cucumber salad</div>
+          <div class="tags"><span class="tag tag-fib">Fibre</span><span class="tag">Iron</span><span class="tag">Folic Acid</span><span class="tag">Probiotic</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-num">7</div>
+        <div class="meal-text">
+          <div class="meal-name">Masoor Dal Soup + Sautéed Vegetables + Tofu/Paneer</div>
+          <div class="meal-detail">Thin red lentil (masoor) soup with garlic and lemon · stir-fried vegetables (broccoli, beans, capsicum, carrot) with minimal olive oil + herbs · 60g pan-seared paneer or tofu</div>
+          <div class="tags"><span class="tag tag-pro">~20g Protein</span><span class="tag tag-fib">Fibre</span><span class="tag">Low Carb</span><span class="tag">Iron</span></div>
+        </div>
+        <span class="who-label who-b">Both</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: WEEKLY PLAN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-weekly">
+  <p class="section-title">7-Day <em>Sample Plan</em></p>
+  <p class="section-desc">A full week showing how to rotate alternatives. Numbers in brackets refer to option numbers from each meal tab. Utkarsh (U) and Princy (P) diverge only at breakfast.</p>
+
+  <div style="overflow-x:auto; margin-bottom:1.5rem;">
+  <table class="week-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Pre-Workout Drink</th>
+        <th>Breakfast</th>
+        <th>Mid-Morning</th>
+        <th>Lunch</th>
+        <th>Evening</th>
+        <th>Dinner</th>
+        <th>Bedtime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day-cell">MON</td>
+        <td>Fennel Water</td>
+        <td>
+          <div class="u-text">U: Oats + 2 Boiled Eggs + Banana (#1)</div>
+          <div class="p-text">P: Paneer Bhurji + Toast + Papaya (#1)</div>
+        </td>
+        <td class="both-text">Soaked Almonds + Dates (#1)</td>
+        <td class="both-text">Dal + 2 Roti + Sabzi + Curd (#1)</td>
+        <td class="both-text">Moong Sprouts Chaat (#1)</td>
+        <td class="both-text">Veg Soup + 1 Roti + Sabzi (#1)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">TUE</td>
+        <td>Cinnamon Water</td>
+        <td>
+          <div class="u-text">U: Egg Bhurji + Toast + Papaya (#2)</div>
+          <div class="p-text">P: Moong Dal Chilla + Paneer (#2)</div>
+        </td>
+        <td class="both-text">Fruit Bowl + Seeds (#2)</td>
+        <td class="both-text">Brown Rice + Rajma + Raita (#2)</td>
+        <td class="both-text">Roasted Chana + Gur (#2)</td>
+        <td class="both-text">Moong Dal Khichdi + Curd (#2)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">WED</td>
+        <td>Fenugreek Water</td>
+        <td>
+          <div class="u-text">U: Omelette + Poha (#3)</div>
+          <div class="p-text">P: Overnight Oats + Nuts + Fruit (#3)</div>
+        </td>
+        <td class="both-text">Hung Curd + Chia + Honey (#3)</td>
+        <td class="both-text">Khichdi + Curd + Papad (#3)</td>
+        <td class="both-text">Seasonal Fruit — Banana (#3)</td>
+        <td class="both-text">Dal Soup + 1 Roti + Steamed Veg (#3)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">THU</td>
+        <td>Warm Lemon + Ginger</td>
+        <td>
+          <div class="u-text">U: Overnight Oats + 2 Eggs + Walnuts (#4)</div>
+          <div class="p-text">P: Veg Poha + Peanuts + Coconut Chutney (#4)</div>
+        </td>
+        <td class="both-text">Makhana + Coconut Water (#4)</td>
+        <td class="both-text">Roti + Palak Paneer + Chaas (#4)</td>
+        <td class="both-text">Makhana + Herbal Chai (#4)</td>
+        <td class="both-text">Palak Soup + Grilled Paneer (#4)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">FRI</td>
+        <td>Jeera Water</td>
+        <td>
+          <div class="u-text">U: Moong Chilla + Egg White Scramble (#5)</div>
+          <div class="p-text">P: Besan Chilla + Hung Curd + Fruit (#5)</div>
+        </td>
+        <td class="both-text">Apple + Peanut Butter (#5)</td>
+        <td class="both-text">Bajra Roti + Dal + Aloo Gobhi (#5)</td>
+        <td class="both-text">Hummus + Vegetable Sticks (#5)</td>
+        <td class="both-text">Oats Daliya Savoury (#5)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">SAT</td>
+        <td>Dhaniya Seed Water</td>
+        <td>
+          <div class="u-text">U: Egg Paratha + Hung Curd + Guava (#6)</div>
+          <div class="p-text">P: Idli + Sambar + Coconut Chutney (#6)</div>
+        </td>
+        <td class="both-text">Spiced Chaas + Roasted Chana (#6)</td>
+        <td class="both-text">Quinoa + Chana Dal + Lauki (#6)</td>
+        <td class="both-text">Seeds Mix + Dates (#6)</td>
+        <td class="both-text">Methi Paratha + Curd + Salad (#6)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+      <tr>
+        <td class="day-cell">SUN</td>
+        <td>Himalayan Salt Water</td>
+        <td>
+          <div class="u-text">U: Besan + Egg Chilla + Yogurt + Seeds (#7)</div>
+          <div class="p-text">P: Dalia Upma + Seeds + Buttermilk (#7)</div>
+        </td>
+        <td class="both-text">Fruit Chaat — Mixed Seasonal (#7)</td>
+        <td class="both-text">Veg Pulao + Dal Tadka + Raita (#7)</td>
+        <td class="both-text">Sweet Potato / Steamed Corn (#7)</td>
+        <td class="both-text">Masoor Dal + Sautéed Veg + Paneer (#7)</td>
+        <td class="both-text">Haldi Doodh</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tip-box">
+    <h3>🛒 Weekly Kitchen Prep (Sunday)</h3>
+    <ul>
+      <li>Soak and sprout moong beans (3–4 days supply). Use airtight jar.</li>
+      <li>Boil a batch of chickpeas / rajma / chana. Refrigerate in portions.</li>
+      <li>Pre-mix your seeds jar: pumpkin + sunflower + flax + sesame. Keep on the counter.</li>
+      <li>Soak almonds (10 per person) every night before sleeping.</li>
+      <li>Make green chutney (coriander-mint-lemon-ginger) in bulk — refrigerate for 5 days.</li>
+      <li>Buy jaggery blocks, dates, and roasted chana in bulk — healthy snack staples.</li>
+      <li>Stock: bajra flour, jowar flour, ragi flour alongside regular whole wheat atta.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: RECOVERY & NUTRIENTS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-recovery">
+  <p class="section-title">Muscle Recovery & <em>Nutrients</em></p>
+  <p class="section-desc">Your calf muscle aches are a clear signal of electrolyte and micronutrient gaps — likely magnesium, potassium, calcium, and possibly Vitamin D deficiency. Here's how to address each through food.</p>
+
+  <div class="callout danger">
+    🦵 <strong>Calf Cramp Alert:</strong> Calf muscle aches after gym (especially daily) are typically caused by: Magnesium deficiency (most common), Potassium imbalance, Dehydration, Vitamin D / B12 deficiency, or lactic acid build-up. This plan directly addresses all five through food. Drink 2.5–3L water daily. Add 1 glass coconut water post-gym.
+  </div>
+
+  <div class="nutrient-grid">
+    <div class="nutrient-card">
+      <h4>🟢 Magnesium <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Anti-cramp #1)</span></h4>
+      <ul>
+        <li><strong>Pumpkin Seeds</strong> <span>150mg/28g — Best source</span></li>
+        <li><strong>Spinach (palak)</strong> <span>78mg/100g</span></li>
+        <li><strong>Almonds</strong> <span>76mg/28g</span></li>
+        <li><strong>Banana</strong> <span>32mg/100g</span></li>
+        <li><strong>Bajra / Jowar</strong> <span>130mg/100g</span></li>
+        <li><strong>Dark Chocolate (85%+)</strong> <span>64mg/28g</span></li>
+        <li><strong>Avocado / Tofu</strong> <span>29mg/100g</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">Daily target: 310–420mg. Have pumpkin seeds every day.</p>
+    </div>
+    <div class="nutrient-card">
+      <h4>🍌 Potassium <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Anti-cramp #2)</span></h4>
+      <ul>
+        <li><strong>Banana</strong> <span>422mg/1 fruit — Best</span></li>
+        <li><strong>Coconut water</strong> <span>600mg/cup</span></li>
+        <li><strong>Sweet Potato</strong> <span>542mg/100g</span></li>
+        <li><strong>Curd / Dahi</strong> <span>380mg/cup</span></li>
+        <li><strong>Pomegranate</strong> <span>236mg/100g</span></li>
+        <li><strong>Dal (any)</strong> <span>400mg/cup</span></li>
+        <li><strong>Rajma / Chole</strong> <span>600mg/cup</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">Have 1 banana daily (add to breakfast). Coconut water post-gym.</p>
+    </div>
+    <div class="nutrient-card">
+      <h4>🥛 Calcium <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Bone + muscle)</span></h4>
+      <ul>
+        <li><strong>Ragi (Nachni) flour</strong> <span>344mg/100g — Highest</span></li>
+        <li><strong>Til / Sesame seeds</strong> <span>975mg/100g</span></li>
+        <li><strong>Paneer</strong> <span>480mg/100g</span></li>
+        <li><strong>Dahi / Curd</strong> <span>300mg/cup</span></li>
+        <li><strong>Makhana (Fox nuts)</strong> <span>60mg/cup</span></li>
+        <li><strong>Almonds</strong> <span>76mg/28g</span></li>
+        <li><strong>Milk</strong> <span>300mg/cup</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">Add sesame (til) to rotis and salads. Try ragi roti 2x/week.</p>
+    </div>
+    <div class="nutrient-card">
+      <h4>☀️ Vitamin D <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Critical deficiency in India)</span></h4>
+      <ul>
+        <li><strong>Eggs (yolk)</strong> <span>~40 IU/egg — Utkarsh</span></li>
+        <li><strong>Sunlight exposure</strong> <span>Best source for both</span></li>
+        <li><strong>Mushrooms (sun-dried)</strong> <span>400 IU/100g</span></li>
+        <li><strong>Fortified milk</strong> <span>Check label</span></li>
+        <li><strong>Ghee (desi)</strong> <span>Small amounts</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">⚠️ Sit in morning sunlight 15–20 min (arms/legs exposed) daily. Princy especially needs supplementation — consult doctor for D3 supplement.</p>
+    </div>
+    <div class="nutrient-card">
+      <h4>🩸 Vitamin B12 <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Nerve + muscle)</span></h4>
+      <ul>
+        <li><strong>Eggs</strong> <span>0.6mcg/egg — Utkarsh ✓</span></li>
+        <li><strong>Milk / Paneer</strong> <span>1.2mcg/cup</span></li>
+        <li><strong>Curd / Dahi</strong> <span>1.0mcg/cup</span></li>
+        <li><strong>Fermented foods</strong> <span>Idli, dosa, kanji</span></li>
+        <li><strong>Fortified cereals</strong> <span>Check label</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">⚠️ Princy: B12 is nearly impossible to get adequately from pure veg. Consider B12 supplement (1000mcg/week sublingual). Consult doctor.</p>
+    </div>
+    <div class="nutrient-card">
+      <h4>🌾 Protein Sources <span style="font-size:0.8rem;font-weight:400;color:var(--muted)">(Muscle repair)</span></h4>
+      <ul>
+        <li><strong>Paneer</strong> <span>18g/100g</span></li>
+        <li><strong>Eggs</strong> <span>6g/egg (Utkarsh)</span></li>
+        <li><strong>Greek Yogurt / Hung Curd</strong> <span>10g/100g</span></li>
+        <li><strong>Moong Dal (cooked)</strong> <span>7g/100g</span></li>
+        <li><strong>Chole / Rajma</strong> <span>9g/100g cooked</span></li>
+        <li><strong>Peanuts</strong> <span>7g/28g</span></li>
+        <li><strong>Pumpkin Seeds</strong> <span>9g/28g</span></li>
+      </ul>
+      <p style="font-size:0.75rem;color:var(--saffron);margin-top:0.6rem;font-weight:600">Target: 1.2–1.6g protein per kg body weight daily.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:#FFF8E0;">🌱</div>
+      <div><div class="card-title">Seeds, Fibre & Good Fats Daily Checklist</div><div class="card-subtitle">Aim to tick all categories every day — mix into meals naturally</div></div>
+    </div>
+    <div class="meal-grid">
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🌰 Pumpkin Seeds (Kaddu ke Beej) — 1 tbsp daily</div>
+          <div class="meal-detail">Highest food source of magnesium. Directly targets calf cramps. Mix into salads, add on curd, have as snack. Also rich in zinc (immunity), iron, and omega-6.</div>
+          <div class="tags"><span class="tag tag-mg">Magnesium</span><span class="tag">Zinc</span><span class="tag">Iron</span><span class="tag tag-fat">Good Fat</span></div>
+        </div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🌿 Flaxseeds / Alsi — 1 tsp ground daily</div>
+          <div class="meal-detail">Best plant-based omega-3 (ALA). Anti-inflammatory — directly helps muscle soreness. Grind fresh (whole seeds pass undigested). Mix in curd, oats, or dal. High in fibre.</div>
+          <div class="tags"><span class="tag tag-fat">Omega-3</span><span class="tag tag-fib">Fibre</span><span class="tag">Anti-Inflam</span></div>
+        </div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🌸 Chia Seeds — 1 tbsp daily</div>
+          <div class="meal-detail">36% fibre by weight. Omega-3, calcium, magnesium. Becomes gel when soaked — keeps you full, excellent for gut health. Add to overnight oats, curd, or lemon water.</div>
+          <div class="tags"><span class="tag tag-fib">High Fibre</span><span class="tag tag-ca">Calcium</span><span class="tag tag-fat">Omega-3</span></div>
+        </div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🍬 Sesame Seeds / Til — 1 tsp daily</div>
+          <div class="meal-detail">975mg calcium per 100g — highest calcium food available cheaply in India. Sprinkle on dal, sabzi, roti. Use til chutney. Add to salad dressings. Also rich in iron and zinc.</div>
+          <div class="tags"><span class="tag tag-ca">Calcium #1</span><span class="tag">Iron</span><span class="tag">Zinc</span></div>
+        </div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🥜 Walnuts — 4 halves daily</div>
+          <div class="meal-detail">Only nut with significant omega-3 (ALA). Brain health, anti-inflammatory, reduces DOMS (delayed onset muscle soreness). Add to breakfast or mid-morning snack.</div>
+          <div class="tags"><span class="tag tag-fat">Omega-3</span><span class="tag">Brain Health</span><span class="tag">Anti-DOMS</span></div>
+        </div>
+      </div>
+      <div class="meal-item b-item">
+        <div class="meal-text">
+          <div class="meal-name">🍶 Desi Ghee — 1–2 tsp per day</div>
+          <div class="meal-detail">Healthy saturated fat (butyric acid — gut lining). Aids absorption of fat-soluble vitamins (A, D, E, K). Don't fear ghee in moderation. Use on roti and in tempering (tadka). Enhances turmeric absorption.</div>
+          <div class="tags"><span class="tag tag-fat">Butyrate</span><span class="tag">Vitamin D Absorption</span><span class="tag">Gut Lining</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:1.5rem">
+    <h3>💪 Post-Gym Recovery Protocol</h3>
+    <ul>
+      <li>Immediately post-gym: 200ml coconut water + 1 banana. Replenishes potassium and magnesium lost in sweat.</li>
+      <li>Within 30 minutes of gym: Have your full breakfast. The anabolic window is real — muscle protein synthesis peaks here.</li>
+      <li>Hydration: 3L total water per day. Sip throughout, not all at once. Include 1–2 glasses of warm water with meals.</li>
+      <li>Calf massage: 5 minutes with sesame oil (til oil) after bath. Warm oil massage improves local circulation significantly.</li>
+      <li>Stretching: 10-minute calf stretch routine post-gym (wall stretch + downward dog + calf raises slow). Non-negotiable.</li>
+      <li>Sleep: 7.5–8 hours. Growth hormone peaks at 11 PM–1 AM. Sleeping by 10:30 PM is the best free recovery tool.</li>
+      <li>Avoid: Sitting with legs crossed for long hours (desk job). Get up every 60 min and walk 5 min. Promotes blood flow to calves.</li>
+    </ul>
+  </div>
+
+  <div class="callout warn" style="margin-top:1rem">
+    🔬 <strong>Suggested Lab Tests (Every 3 months):</strong> Vitamin D3, B12, Iron (serum ferritin), Magnesium, HbA1c, CBC. These are especially important for Princy as a pure vegetarian. Many deficiencies are sub-clinical — no symptoms until they're severe. Early detection = easy correction through diet.
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<footer>
+  Personalised Nutrition Plan for <strong>Utkarsh & Princy</strong> · Designed with ❤ by your Wellness Nutritionist · 2026<br>
+  <span style="color:var(--muted);font-size:0.72rem">This plan is a professional starting framework. Adjust portions based on weekly weight tracking and energy levels. Consult your physician for supplements (D3, B12).</span>
+</footer>
+
+<!-- PDF FAB -->
+<div class="pdf-fab">
+  <button class="pdf-btn" onclick="openPdfModal()">
+    <span>📄</span> Generate Weekly PDF
+  </button>
+</div>
+
+<!-- PDF MODAL -->
+<div class="pdf-overlay" id="pdfOverlay" onclick="handleOverlayClick(event)">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <div>
+        <div class="pdf-modal-title">Weekly Meal Plan — <em>Randomised</em></div>
+        <div class="pdf-modal-subtitle">Each meal is randomly selected from the 7 available options. Re-roll anytime.</div>
+      </div>
+      <button class="pdf-close" onclick="closePdfModal()">✕</button>
+    </div>
+    <div class="pdf-modal-body">
+      <div class="week-preview" id="weekPreview"></div>
+    </div>
+    <div class="pdf-modal-footer">
+      <div class="pdf-hint">💡 Click Re-roll for a different plan</div>
+      <div class="pdf-action-btns">
+        <button class="btn-regenerate" onclick="generateWeekPlan()">🎲 Re-roll</button>
+        <button class="btn-download" id="downloadBtn" onclick="downloadPDF()">⬇ Download PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   TAB NAVIGATION
+───────────────────────────────────────────── */
+function switchTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ─────────────────────────────────────────────
+   MEAL DATA
+───────────────────────────────────────────── */
+const DRINKS = [
+  "Fennel Seed Water (saunf soaked overnight)",
+  "Cinnamon Water (dal chini boiled 5 min)",
+  "Fenugreek Water (methi soaked overnight)",
+  "Warm Lemon + Ginger Water",
+  "Cumin (Jeera) Water",
+  "Coriander Seed Water (dhaniya soaked)",
+  "Himalayan Salt Electrolyte Water"
+];
+
+const BREAKFAST = {
+  utkarsh: [
+    { name: "Masala Oats + 2 Boiled Eggs + Banana", detail: "½ cup oats (jeera, veggies) · 2 boiled eggs · 1 banana · 5 almonds · chia seeds", tags: "~28g Protein" },
+    { name: "Egg Bhurji + Whole Wheat Toast + Papaya", detail: "2-egg bhurji (tomato, onion, chilli) · 2 WW toast · 1 cup papaya", tags: "~25g Protein" },
+    { name: "Vegetable Omelette + Vegetable Poha", detail: "2-egg omelette (spinach, capsicum) · small bowl peanut poha", tags: "~26g Protein" },
+    { name: "Overnight Oats + 2 Boiled Eggs + Walnuts", detail: "½ cup oats in curd + chia + banana · 2 boiled eggs · 2 walnuts", tags: "~28g Protein" },
+    { name: "Moong Dal Chilla + Egg White Scramble", detail: "2 moong chillas + egg white filling · green chutney", tags: "~30g Protein" },
+    { name: "Egg Paratha + Hung Curd + Fruit", detail: "1 egg WW paratha · 3 tbsp hung curd · 1 guava or orange", tags: "~22g Protein" },
+    { name: "Besan-Egg Chilla + Greek Yogurt + Seeds", detail: "1 egg + 2 tbsp besan chilla · 100g Greek yogurt + seeds + honey", tags: "~27g Protein" }
+  ],
+  princy: [
+    { name: "Paneer Bhurji + Whole Wheat Toast + Papaya", detail: "80g paneer bhurji (onion, tomato, capsicum) · 2 WW toast · 1 cup papaya", tags: "~22g Protein" },
+    { name: "Moong Dal Chilla with Paneer Filling", detail: "2 moong chillas stuffed with 50g spiced paneer · green chutney", tags: "~24g Protein" },
+    { name: "Overnight Oats + Nuts + Fruit Bowl", detail: "½ cup oats in curd + chia + banana + pomegranate · 5 almonds + 2 walnuts", tags: "~14g Protein" },
+    { name: "Vegetable Poha + Peanuts + Coconut Chutney", detail: "1 cup poha with peanuts, peas, turmeric · coconut chutney · 1 fruit", tags: "~12g Protein" },
+    { name: "Besan Chilla + Hung Curd + Fruit", detail: "2 besan chillas (onion, tomato, ajwain) · 3 tbsp hung curd · 1 guava", tags: "~18g Protein" },
+    { name: "2 Idli + Vegetable Sambar + Coconut Chutney", detail: "2 steam idli · toor dal sambar with veggies · coconut chutney · 1 fruit", tags: "~16g Protein" },
+    { name: "Dalia Upma + Seeds + Buttermilk", detail: "Broken wheat upma with mixed veg + curry leaves · pumpkin + flax seeds · chaas", tags: "~14g Protein" }
+  ]
+};
+
+const MID_MORNING = [
+  { name: "Soaked Almonds + Walnuts + Dates", detail: "10 almonds + 4 walnut halves + 2 dates", tags: "Magnesium · Omega-3" },
+  { name: "Fruit Bowl + Mixed Seeds", detail: "1 seasonal fruit + 1 tbsp pumpkin + sunflower + flax", tags: "Vitamins · Minerals" },
+  { name: "Hung Curd + Chia Seeds + Honey", detail: "100g hung curd + 1 tsp chia + ½ tsp honey + cinnamon", tags: "~12g Protein · Calcium" },
+  { name: "Roasted Makhana + Coconut Water", detail: "1 cup ghee-roasted makhana · 200ml coconut water", tags: "Calcium · Potassium" },
+  { name: "Apple / Banana + Peanut Butter", detail: "1 medium fruit + 2 tsp natural peanut butter", tags: "Good Fats · Protein" },
+  { name: "Spiced Chaas + Roasted Chana", detail: "1 glass buttermilk (jeera, mint, black salt) + 30g roasted chana", tags: "Iron · Probiotics" },
+  { name: "Seasonal Fruit Chaat", detail: "Mixed fruits (banana, papaya, orange, pomegranate) + chaat masala + lemon", tags: "Vitamin C · Antioxidants" }
+];
+
+const LUNCH = [
+  { name: "Dal + 2 Roti + Mixed Sabzi + Curd + Salad", detail: "Toor/moong dal tadka · 2 WW rotis · low-oil sabzi · kachumber · curd", tags: "~20g Protein" },
+  { name: "Brown Rice + Rajma/Chole + Raita + Salad", detail: "¾ cup brown rice · kidney beans or chickpea curry · cucumber raita", tags: "~22g Protein" },
+  { name: "Moong Dal Khichdi + Curd + Salad + Papad", detail: "Dal-rice khichdi (ghee + jeera + turmeric) · curd · raw salad · 1 roasted papad", tags: "~18g Protein" },
+  { name: "2 Roti + Palak Paneer + Salad + Chaas", detail: "80g paneer in spinach gravy · 2 WW rotis · kachumber · buttermilk", tags: "~25g Protein" },
+  { name: "Bajra/Jowar Roti + Arhar Dal + Aloo Gobhi + Curd", detail: "2 millet rotis + ghee · arhar dal · dry aloo gobhi sabzi · curd", tags: "~18g Protein · Magnesium" },
+  { name: "Quinoa + Chana Dal + Lauki Sabzi + Salad", detail: "¾ cup quinoa · Bengal gram dal · bottle gourd sabzi · cucumber salad", tags: "~24g Protein · Complete AA" },
+  { name: "Vegetable Pulao + Dal Tadka + Raita", detail: "Brown rice veg pulao (peas, carrot, beans) · moong dal tadka · vegetable raita", tags: "~19g Protein" }
+];
+
+const EVENING = [
+  { name: "Moong Sprouts Chaat", detail: "½ cup sprouts + tomato + onion + chilli + coriander + lemon + chaat masala", tags: "Iron · Living Food" },
+  { name: "Roasted Chana + Jaggery (Gur)", detail: "1 small handful roasted chana + 1 piece jaggery (10g)", tags: "Iron · Protein · B-Vitamins" },
+  { name: "Seasonal Whole Fruit", detail: "1 banana (potassium) or guava (Vit C) or apple or orange or pear", tags: "Potassium · Fibre" },
+  { name: "Ghee-Roasted Makhana + Herbal Chai", detail: "1 cup makhana (ghee + rock salt + ajwain) + 1 cup tulsi-ginger tea", tags: "Calcium · Low Calorie" },
+  { name: "Homemade Hummus + Vegetable Sticks", detail: "2 tbsp hummus + carrot sticks + cucumber + celery", tags: "Protein · Good Fats · Fibre" },
+  { name: "Mixed Seeds + Dates Mix", detail: "1 tbsp pumpkin + 1 tsp sunflower + 1 tsp flax seeds + 2 dates", tags: "Magnesium · Zinc · Omega-3" },
+  { name: "Steamed Corn / Roasted Sweet Potato", detail: "1 cup sweet corn + lemon + chaat masala OR ½ sweet potato (shakarkandi)", tags: "Potassium · Vitamin A" }
+];
+
+const DINNER = [
+  { name: "Vegetable Soup + 1 Roti + Light Sabzi", detail: "Tomato-carrot soup (no cream) + 1 WW roti + lauki/turai sabzi", tags: "Alkaline · Low Cal" },
+  { name: "Light Moong Dal Khichdi + Curd + Salad", detail: "Dal-heavy khichdi (2:1 dal:rice) + ghee + ginger · curd · cucumber salad", tags: "~17g Protein · Easy Digest" },
+  { name: "Dal Soup + 1 Roti + Steamed Vegetables", detail: "Thin masoor/moong dal soup + lemon · 1 WW roti · steamed broccoli or beans", tags: "Iron · Fibre" },
+  { name: "Palak/Spinach Soup + Grilled Paneer", detail: "Blended spinach soup (garlic, lemon) + 80g grilled paneer cubes + salad", tags: "~22g Protein · Iron · Calcium" },
+  { name: "Savoury Oats / Dalia Upma", detail: "½ cup oats or dalia cooked with tomato, peas, capsicum, turmeric + pumpkin seeds", tags: "Beta-glucan · Magnesium" },
+  { name: "Methi/Palak Paratha + Curd + Salad", detail: "1 small WW paratha stuffed with fresh methi or palak + ½ tsp ghee · curd", tags: "Iron · Folic Acid" },
+  { name: "Masoor Dal Soup + Sautéed Vegetables + Paneer", detail: "Red lentil soup + stir-fried broccoli/capsicum/beans + 60g pan-seared paneer", tags: "~20g Protein · Low Carb" }
+];
+
+const BEDTIME = "Golden Haldi Doodh (200ml warm milk + turmeric + black pepper + cinnamon + honey)";
+
+const DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
+
+/* ─────────────────────────────────────────────
+   RANDOMISE WEEK PLAN
+───────────────────────────────────────────── */
+let currentPlan = [];
+
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateWeekPlan() {
+  currentPlan = DAYS.map((day, i) => ({
+    day,
+    drink: DRINKS[i % DRINKS.length !== i ? Math.floor(Math.random() * DRINKS.length) : i],
+    breakfastU: pick(BREAKFAST.utkarsh),
+    breakfastP: pick(BREAKFAST.princy),
+    midMorning: pick(MID_MORNING),
+    lunch: pick(LUNCH),
+    evening: pick(EVENING),
+    dinner: pick(DINNER),
+    bedtime: BEDTIME
+  }));
+  renderPreview();
+}
+
+function renderPreview() {
+  const container = document.getElementById('weekPreview');
+  container.innerHTML = currentPlan.map(d => `
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-name">📅 ${d.day}</span>
+        <span class="day-drink">🫖 ${d.drink.split('(')[0].trim()}</span>
+      </div>
+      <div class="day-meals">
+        <div class="day-meal-cell">
+          <div class="day-meal-type">🍳 Breakfast</div>
+          <div class="meal-u">U: ${d.breakfastU.name}</div>
+          <div class="meal-p">P: ${d.breakfastP.name}</div>
+        </div>
+        <div class="day-meal-cell">
+          <div class="day-meal-type">🍎 Mid-Morning</div>
+          <div class="meal-b">${d.midMorning.name}</div>
+        </div>
+        <div class="day-meal-cell">
+          <div class="day-meal-type">🍱 Lunch</div>
+          <div class="meal-b">${d.lunch.name}</div>
+        </div>
+        <div class="day-meal-cell">
+          <div class="day-meal-type">🌿 Evening</div>
+          <div class="meal-b">${d.evening.name}</div>
+        </div>
+        <div class="day-meal-cell">
+          <div class="day-meal-type">🌙 Dinner</div>
+          <div class="meal-b">${d.dinner.name}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─────────────────────────────────────────────
+   MODAL OPEN / CLOSE
+───────────────────────────────────────────── */
+function openPdfModal() {
+  generateWeekPlan();
+  document.getElementById('pdfOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePdfModal() {
+  document.getElementById('pdfOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('pdfOverlay')) closePdfModal();
+}
+
+/* ─────────────────────────────────────────────
+   PDF GENERATION  (jsPDF)
+───────────────────────────────────────────── */
+async function downloadPDF() {
+  const btn = document.getElementById('downloadBtn');
+  btn.disabled = true;
+  btn.innerHTML = 'Generating PDF...';
+  await new Promise(r => setTimeout(r, 80));
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const PW = 210, PH = 297, ML = 14, MR = 14, MT = 16, CW = 182;
+    const SAF=[196,116,42], SAF_DK=[140,75,15], SAF_LT=[232,184,109], ORG=[218,135,55];
+    const UTK=[45,90,144], PRI=[184,75,122];
+    const CREAM=[250,246,238], WARM=[255,251,244], BDR=[232,223,208];
+    const MUTED=[140,128,115], WHITE=[255,255,255], DARK=[28,22,12];
+    const HERO1=[75,42,8], HERO2=[115,65,18];
+    let y = 0;
+
+    function newPage() { doc.addPage(); y = MT; pb(); }
+    function chk(n) { if (y+n > PH-18) newPage(); }
+    function pb() {
+      doc.setDrawColor(...BDR); doc.setLineWidth(0.4); doc.rect(7,7,PW-14,PH-14);
+      doc.setDrawColor(...SAF_LT); doc.setLineWidth(0.15); doc.rect(9.5,9.5,PW-19,PH-19);
+    }
+    function sf(st, sz, col) {
+      doc.setFont('helvetica', st||'normal');
+      doc.setFontSize(sz||10);
+      doc.setTextColor(...(col||DARK));
+    }
+    function cl(s) { return (s||'').replace(/[^\x09\x0A\x0D\x20-\x7E]/g,'').trim(); }
+
+    // PAGE 1 - COVER
+    doc.setFillColor(...HERO1); doc.rect(0,0,PW,42,'F');
+    doc.setFillColor(...HERO2); doc.rect(0,42,PW,30,'F');
+    doc.setFillColor(...SAF_DK); doc.rect(0,69,PW,4,'F');
+    doc.setFillColor(...SAF_DK); doc.roundedRect(ML+CW/2-42,14,84,7,3,3,'F');
+    sf('bold',7,SAF_LT); doc.text('PERSONALISED WELLNESS PLAN  2026',ML+CW/2,19.3,{align:'center'});
+    sf('bold',30,WHITE); doc.text('Utkarsh & Princy',ML+CW/2,45,{align:'center'});
+    doc.setFillColor(...SAF_LT); doc.rect(ML+CW/2-34,48,68,1.2,'F');
+    sf('italic',12,SAF_LT); doc.text('Weekly Meal Plan',ML+CW/2,57,{align:'center'});
+    sf('normal',8,[200,185,160]);
+    doc.text('Vegetarian  |  Weight Loss  |  Muscle Recovery  |  Indian Kitchen  |  12h IF',ML+CW/2,65,{align:'center'});
+    y = 84;
+
+    // IF bar
+    doc.setFillColor(...CREAM); doc.setDrawColor(...BDR); doc.setLineWidth(0.3);
+    doc.roundedRect(ML,y,CW,24,3,3,'F'); doc.roundedRect(ML,y,CW,24,3,3,'S');
+    sf('bold',7,MUTED); doc.text('INTERMITTENT FASTING WINDOW',ML+4,y+5.5);
+    var bX=ML+4,bY=y+8.5,bW=CW-8,bH=8;
+    doc.setFillColor(115,42,42); doc.roundedRect(bX,bY,bW*.5,bH,2,2,'F');
+    doc.setFillColor(...SAF);    doc.roundedRect(bX+bW*.5,bY,bW*.5,bH,2,2,'F');
+    sf('bold',6.5,WHITE);
+    doc.text('FASTING  8 PM to 8 AM',bX+bW*.25,bY+5.2,{align:'center'});
+    doc.text('EATING WINDOW  8 AM to 8 PM',bX+bW*.75,bY+5.2,{align:'center'});
+    sf('normal',6.5,MUTED);
+    doc.text('12 AM',bX,bY+13); doc.text('8 AM',bX+bW*.5,bY+13,{align:'center'}); doc.text('8 PM',bX+bW,bY+13,{align:'right'});
+    y += 32;
+
+    [{c:UTK,l:'Utkarsh (Eggs OK)'},{c:PRI,l:'Princy (Pure Veg)'},{c:[80,130,70],l:'Both'}].forEach(function(it,i){
+      var lx=ML+CW/2-62+i*44;
+      doc.setFillColor(...it.c); doc.circle(lx+2.5,y+2,2.2,'F');
+      sf('normal',8.5,DARK); doc.text(it.l,lx+7,y+3.5);
+    });
+    y += 12;
+
+    doc.setFillColor(255,248,232); doc.setDrawColor(...SAF_LT); doc.setLineWidth(0.3);
+    doc.roundedRect(ML,y,CW,14,2,2,'F'); doc.roundedRect(ML,y,CW,14,2,2,'S');
+    sf('bold',8.5,SAF_DK); doc.text('BEDTIME - Every Night at 8:00 PM',ML+4,y+5.8);
+    sf('normal',8,[90,65,15]);
+    doc.text('Golden Haldi Doodh: 200ml warm milk + turmeric + black pepper + cinnamon + honey',ML+4,y+11.2,{maxWidth:CW-8});
+    y += 20;
+
+    doc.setFillColor(...SAF); doc.roundedRect(ML,y,CW,9,2,2,'F');
+    sf('bold',9.5,WHITE); doc.text('DAILY SCHEDULE OVERVIEW',ML+CW/2,y+6.2,{align:'center'});
+    y += 13;
+
+    [['6:00 AM','Pre-workout herbal drink (rotate from 7 options)'],
+     ['7:00 AM','Gym session - 60 to 75 minutes'],
+     ['8:00 AM','Breakfast - Eating window begins'],
+     ['11:00 AM','Mid-morning snack'],
+     ['1:30 PM','Lunch - Largest meal of the day'],
+     ['4:30 PM','Evening snack'],
+     ['7:30 PM','Dinner - Light and easy to digest'],
+     ['8:00 PM','Haldi Doodh - Fasting window begins']
+    ].forEach(function(row,i){
+      doc.setFillColor(...(i%2===0?WARM:WHITE)); doc.rect(ML,y,CW,7.8,'F');
+      doc.setFillColor(...SAF_LT); doc.rect(ML,y,2.5,7.8,'F');
+      sf('bold',8.5,SAF); doc.text(row[0],ML+5,y+5.2);
+      sf('normal',8.5,DARK); doc.text(row[1],ML+30,y+5.2);
+      doc.setDrawColor(...BDR); doc.setLineWidth(0.1); doc.line(ML,y+7.8,ML+CW,y+7.8);
+      y += 7.8;
+    });
+
+    sf('normal',7,MUTED); doc.text('Utkarsh & Princy  |  Personalised Wellness Plan 2026',PW/2,PH-10,{align:'center'});
+    sf('bold',7,SAF); doc.text('Page 1 of '+(currentPlan.length+2),PW-ML,PH-10,{align:'right'});
+
+    // PAGES 2-8: ONE PER DAY
+    currentPlan.forEach(function(d,idx){
+      newPage();
+      doc.setFillColor(...SAF); doc.roundedRect(ML,y,CW,13,3,3,'F');
+      sf('bold',14,WHITE); doc.text(d.day,ML+6,y+9.3);
+      sf('italic',8.5,SAF_LT); doc.text('Day '+(idx+1)+' of 7',PW-MR-5,y+9.3,{align:'right'});
+      y += 17;
+
+      doc.setFillColor(255,250,240); doc.setDrawColor(...BDR); doc.setLineWidth(0.2);
+      doc.roundedRect(ML,y,CW,13,2,2,'F'); doc.roundedRect(ML,y,CW,13,2,2,'S');
+      doc.setFillColor(...SAF_LT); doc.rect(ML,y,3,13,'F');
+      sf('bold',8,SAF_DK); doc.text('PRE-WORKOUT DRINK  (6:00 AM)',ML+6,y+5.5);
+      sf('normal',8.5,DARK); doc.text(cl(d.drink),ML+6,y+10.5,{maxWidth:CW-10});
+      y += 18;
+
+      function drawMeal(tl,ml,hc,rows){
+        chk(14+rows.length*24);
+        doc.setFillColor(...hc); doc.roundedRect(ML,y,CW,9,2,2,'F');
+        sf('bold',9,WHITE); doc.text(ml,ML+5,y+6.2);
+        sf('normal',7.5,[240,230,215]); doc.text(tl,PW-MR-4,y+6.2,{align:'right'});
+        y += 11;
+        rows.forEach(function(row,ri){
+          var cn=cl(row.name), cd=cl(row.detail), ct=cl(row.tags||'');
+          var nW=CW-row.pw-16;
+          var nL=doc.splitTextToSize(cn,nW).length;
+          var dL=doc.splitTextToSize(cd,CW-10).length;
+          var cH=nL*5+dL*4+(ct?5:0)+8;
+          chk(cH+2);
+          doc.setFillColor(ri%2===0?255:252,ri%2===0?252:249,ri%2===0?248:244);
+          doc.rect(ML,y,CW,cH,'F');
+          doc.setFillColor(...row.bc); doc.rect(ML,y,3,cH,'F');
+          doc.setDrawColor(...BDR); doc.setLineWidth(0.12); doc.line(ML,y+cH,ML+CW,y+cH);
+          doc.setFillColor(...row.pb); doc.roundedRect(ML+6,y+3,row.pw,5,2,2,'F');
+          sf('bold',6.5,row.pc); doc.text(row.label,ML+6+row.pw/2,y+6.8,{align:'center'});
+          sf('bold',9,DARK); doc.text(cn,ML+8+row.pw,y+6.5,{maxWidth:nW});
+          var nH=nL*5;
+          sf('normal',7.5,MUTED); doc.text(cd,ML+6,y+6.5+nH+1.5,{maxWidth:CW-10});
+          var dH=dL*4;
+          if(ct){sf('bold',6.5,SAF); doc.text('[ '+ct+' ]',ML+6,y+6.5+nH+dH+3.5);}
+          y += cH+1;
+        });
+        y += 5;
+      }
+
+      var BP={bc:[80,130,70],pb:[232,245,230],pc:[40,90,30],pw:14,label:'Both'};
+
+      drawMeal('8:00 AM - Break Fast','BREAKFAST',SAF,[
+        {label:'Utkarsh',name:d.breakfastU.name,detail:d.breakfastU.detail,tags:d.breakfastU.tags,bc:UTK,pb:[235,241,250],pc:UTK,pw:19},
+        {label:'Princy', name:d.breakfastP.name,detail:d.breakfastP.detail,tags:d.breakfastP.tags,bc:PRI,pb:[250,234,242],pc:PRI,pw:17}
+      ]);
+      drawMeal('11:00 AM','MID-MORNING SNACK',ORG,
+        [Object.assign({},BP,{name:d.midMorning.name,detail:d.midMorning.detail,tags:d.midMorning.tags})]);
+      drawMeal('1:30 PM','LUNCH',SAF_DK,
+        [{label:'Both',name:d.lunch.name,detail:d.lunch.detail,tags:d.lunch.tags,bc:SAF_DK,pb:[255,243,228],pc:SAF_DK,pw:14}]);
+      drawMeal('4:30 PM','EVENING SNACK',ORG,
+        [Object.assign({},BP,{name:d.evening.name,detail:d.evening.detail,tags:d.evening.tags})]);
+      drawMeal('7:30 PM','DINNER',[72,55,32],
+        [{label:'Both',name:d.dinner.name,detail:d.dinner.detail,tags:d.dinner.tags,bc:[110,80,40],pb:[245,240,228],pc:[72,50,18],pw:14}]);
+
+      chk(14);
+      doc.setFillColor(255,250,232); doc.setDrawColor(...SAF_LT); doc.setLineWidth(0.3);
+      doc.roundedRect(ML,y,CW,12,2,2,'F'); doc.roundedRect(ML,y,CW,12,2,2,'S');
+      sf('bold',7.5,SAF_DK);
+      doc.text('BEDTIME 8:00 PM  |  Golden Haldi Doodh: warm milk + turmeric + black pepper + cinnamon + honey',ML+5,y+7.5,{maxWidth:CW-8});
+      y += 16;
+
+      sf('normal',7,MUTED); doc.text('Utkarsh & Princy  |  Personalised Wellness Plan 2026',PW/2,PH-10,{align:'center'});
+      sf('bold',7,SAF); doc.text('Page '+(idx+2)+' of '+(currentPlan.length+2),PW-ML,PH-10,{align:'right'});
+    });
+
+    // FINAL PAGE - TIPS
+    newPage();
+    doc.setFillColor(...SAF); doc.roundedRect(ML,y,CW,12,3,3,'F');
+    sf('bold',13,WHITE); doc.text('Recovery Tips & Nutrient Reference',ML+CW/2,y+8.5,{align:'center'});
+    y += 18;
+
+    [
+      {title:'CALF MUSCLE CRAMP FIX',col:[155,55,55],bg:[255,245,245],bc:[200,100,100],items:[
+        'Magnesium: 1 tbsp pumpkin seeds daily - the single best food source for magnesium',
+        'Potassium: 1 banana every morning + 200ml coconut water post-gym',
+        'Hydration: 2.5 to 3 litres water daily; sip throughout the day, not all at once',
+        'Electrolytes: Himalayan salt water pre-workout replaces minerals lost in sweat',
+        'Calf stretch: 10 min wall stretch + downward dog post-gym - non-negotiable',
+        'Warm sesame (til) oil massage on calves after bath - 5 minutes daily'
+      ]},
+      {title:'SUPPLEMENTS - DISCUSS WITH YOUR DOCTOR',col:[70,50,120],bg:[245,242,255],bc:[140,100,200],items:[
+        'Vitamin D3 (Both): Sit in morning sunlight 15-20 min daily with arms and legs exposed.',
+        'Vitamin B12 (Princy): Nearly impossible from pure veg diet. 1000mcg/week sublingual recommended.',
+        'Magnesium Glycinate: If cramps persist despite dietary changes - most easily absorbed form.',
+        'Iron (Princy): Test serum ferritin every 3 months. Always pair iron foods with Vitamin C.'
+      ]},
+      {title:'DAILY SEEDS AND GOOD FATS - TICK EVERY DAY',col:SAF_DK,bg:[255,249,238],bc:SAF_LT,items:[
+        'Pumpkin seeds: 1 tbsp daily - magnesium, zinc, iron. The anti-cramp superstar.',
+        'Flaxseeds (alsi): 1 tsp ground fresh - omega-3, fibre. Grind before eating.',
+        'Chia seeds: 1 tbsp daily - calcium, omega-3, prebiotic fibre. Soak in curd or water.',
+        'Sesame (til): 1 tsp daily - highest calcium food available in India (975mg per 100g).',
+        'Walnuts: 4 halves - only nut with omega-3. Reduces post-gym muscle soreness.',
+        'Desi ghee: 1 to 2 tsp - gut lining (butyrate), aids fat-soluble vitamin absorption.'
+      ]},
+      {title:'WEEKLY KITCHEN PREP - EVERY SUNDAY',col:[100,65,15],bg:[255,250,238],bc:SAF_LT,items:[
+        'Soak and sprout moong beans - 3 day supply in airtight jar in fridge.',
+        'Boil chickpeas, rajma, chana in bulk and refrigerate in meal-sized portions.',
+        'Pre-mix seeds jar: pumpkin + sunflower + flax + sesame - keep on kitchen counter.',
+        'Soak 10 almonds per person every night before sleeping.',
+        'Make green chutney in bulk (coriander + mint + lemon + ginger) - keeps 5 days.',
+        'Stock millet flours: bajra, jowar, ragi alongside regular whole wheat atta.'
+      ]}
+    ].forEach(function(sec){
+      chk(sec.items.length*8+22);
+      doc.setFillColor(...sec.bg); doc.setDrawColor(...sec.bc); doc.setLineWidth(0.3);
+      doc.roundedRect(ML,y,CW,9.5,2,2,'F'); doc.roundedRect(ML,y,CW,9.5,2,2,'S');
+      doc.setFillColor(...sec.col); doc.rect(ML,y,3.5,9.5,'F');
+      sf('bold',9,sec.col); doc.text(sec.title,ML+7,y+6.5);
+      y += 13;
+      sec.items.forEach(function(item){
+        var lines=doc.splitTextToSize(item,CW-14);
+        chk(lines.length*4.5+3);
+        doc.setFillColor(...sec.col); doc.circle(ML+4,y+2,1.3,'F');
+        sf('normal',8.5,DARK); doc.text(item,ML+9,y+3.5,{maxWidth:CW-13});
+        y += lines.length*4.5+3;
+      });
+      y += 5;
+    });
+
+    chk(16);
+    doc.setFillColor(...SAF); doc.roundedRect(ML,y,CW,13,2,2,'F');
+    sf('italic',9.5,WHITE);
+    doc.text('Consistency over perfection. Small daily choices create lasting transformation.',ML+CW/2,y+8.5,{align:'center'});
+    y += 17;
+    sf('normal',7,MUTED); doc.text('Utkarsh & Princy  |  Personalised Wellness Plan 2026',PW/2,PH-10,{align:'center'});
+    sf('bold',7,SAF); doc.text('Page '+(currentPlan.length+2)+' of '+(currentPlan.length+2),PW-ML,PH-10,{align:'right'});
+
+    var tp=doc.internal.getNumberOfPages();
+    for(var p=1;p<=tp;p++){doc.setPage(p);pb();}
+
+    var today=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-');
+    doc.save('Utkarsh-Princy-MealPlan-'+today+'.pdf');
+
+  } catch(err) {
+    alert('PDF generation failed: '+err.message);
+    console.error(err);
+  }
+  btn.disabled = false;
+  btn.innerHTML = 'Download PDF';
+}
+
+</script>
+</body>
+</html>
